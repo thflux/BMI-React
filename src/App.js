@@ -10,26 +10,22 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-     value: ''
+     weight: '',
+     height: ''
     };
-  this.handleChange = this.handleChange.bind(this);
-  this.weightChange = this.weightChange.bind(this);
-  this.heightChange = this.heightChange.bind(this);
- }
   
-weightChange(weightValue) {
-  this.setState({weight : weightValue} );
-}  
+  this.handleWeightChange = this.handleWeightChange.bind(this);
+  this.handleHeightChange = this.handleHeightChange.bind(this);
+ }
 
-heightChange(heightValue) {
-  this.setState({height: heightValue });
+handleWeightChange (event) {
+  this.setState({ weight: event.target.weight})
 }
 
-handleChange(event) {
-  let inputValue = event.target.value;
-  this.setState({ value : inputValue });
-  this.props.onChange(inputValue);
+handleHeightChange (event) {
+  this.setState({ height: event.target.height})
 }
+  
 
 computeBmi() {
   let bmiValue = ( this.state.weight / this.state.height) / this.state.height;
