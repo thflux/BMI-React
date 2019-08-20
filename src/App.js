@@ -10,64 +10,79 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-     weight: '',
-     height: ''
+     weight: 0,
+     height: 0,
+     bmi: 0
     };
-  
-  this.handleWeightChange = this.handleWeightChange.bind(this);
-  this.handleHeightChange = this.handleHeightChange.bind(this);
+ this.handleWeightChange = this.handleWeightChange.bind(this); 
+ this.handleHeightChange = this.handleHeightChange.bind(this);
+ this.getBMI = this.getBMI.bind(this);
+ this.reset = this.reset.bind(this);
  }
 
-handleWeightChange (event) {
-  this.setState({ weight: event.target.weight})
+handleWeightChange(event) {
+  this.setState({ weight: event.target.value})
 }
 
-handleHeightChange (event) {
-  this.setState({ height: event.target.height})
-}
-  
-
-computeBmi() {
-  let bmiValue = ( this.state.weight / this.state.height) / this.state.height;
-  this.setState({ bmi : bmiValue });
-  let bmiClass = this.getBmi(bmiValue);
-  this.setState({ bmiClass : bmiClass });
+ handleHeightChange(event) {
+  this.setState({ height: event.target.value})
 }
 
-getBmi(bmi) {
-  if(bmi < 18.5) {
-    return "Underweight";
-  }
-  if(bmi >= 18.5 && bmi < 24.9) {
-    return "Normal weight";
-  }
-  if(bmi >= 25 && bmi < 29.9) {
-    return "Overweight";
-  }
-  if(bmi >= 30) {
-    return "Obesity";
-  }
+getBMI() {
+  var squaredHeight = (this.state.height * this.state.height);
+  this.setState({bmi: this.state.weight / squaredHeight})
 }
 
+reset(){
+  this.setState({ weight: 0, height: 0 , bmi: 0})
+}  
 
 render() {
   return (
     <div className="App">
     <h1 className="App-title"> My BMI? </h1>
    
-   <form>
+    <ul>
      <label>
       Weight:
-        <input type="text" name="weight" minlength="2" maxlength="4" value={this.state.value} onChange={this.handleChange} />
+        <input 
+        type="text" 
+        name="weight"
+        onChange={this.handleWeightChange}
+        value={this.state.weight}  />
       </label>
-      
+      </ul>
+     
+      <ul>
       <label>
       Height:
-        <input type="text" name="height" maxlength="2" minlength="2" value={this.state.value} onChange={this.handleChange}  />
+        <input 
+        type="text" 
+        name="height" 
+        onChange={this.handleHeightChange}
+        value={this.state.height}   />
       </label>
-      
-     <input type="submit" value="Submit" />
-    </form>
+       </ul>  
+        
+        <ul> 
+        <Button  className='btn-calc' onClick={this.getBMI}>
+        Get Bmi
+        </Button>
+        </ul>
+        
+        <ul>
+        <Button  className='reset' onClick={this.reset}>
+        Reset
+        </Button>
+        </ul>
+        
+    
+    
+    <div className="row">
+      <h3>BMI = {this.state.bmi}</h3>
+    </div>
+    
+    
     
     <footer>
     <p> this was developed by the young HSSK Prodigy </p>
