@@ -12,12 +12,14 @@ export default class App extends React.Component {
     this.state = {
      weight: 0,
      height: 0,
-     bmi: 0
+     bmi: 0,
+     bmiClass: ''
     };
  this.handleWeightChange = this.handleWeightChange.bind(this); 
  this.handleHeightChange = this.handleHeightChange.bind(this);
  this.getBMI = this.getBMI.bind(this);
  this.reset = this.reset.bind(this);
+ this.bmiZone = this.bmiZone.bind(this);
  }
 
 handleWeightChange(event) {
@@ -29,12 +31,31 @@ handleWeightChange(event) {
 }
 
 getBMI() {
-  var squaredHeight = (this.state.height * this.state.height);
-  this.setState({bmi: this.state.weight / squaredHeight})
+  this.setState({bmi: ((this.state.weight  * 703) / (this.state.height ** 2)).toFixed(1) })
+  
+  this.setState({bmiClass: this.bmiZone(this.state.bmi)})
+}
+
+bmiZone(bmi) {
+  if (bmi < 18.5) {
+    return "Underweight";
+  }
+  else if (bmi >= 18.5 && bmi <= 24.9) {
+    return "Optimal Weight";
+  }
+  else if (this.state.bmi >= 25 && bmi <= 29.9) {
+    return "Overweight"
+  }
+  else if (bmi >= 30) {
+    return "Obesity"
+    }
+  else {
+    return "nothin"
+  }
 }
 
 reset(){
-  this.setState({ weight: 0, height: 0 , bmi: 0})
+  this.setState({ weight: 0, height: 0 , bmi: 0, bmiClass: 'nothin'})
 }  
 
 render() {
@@ -80,6 +101,7 @@ render() {
     
     <div className="row">
       <h3>BMI = {this.state.bmi}</h3>
+      <h5>BMI Class = {this.state.bmiClass}</h5>
     </div>
     
     
