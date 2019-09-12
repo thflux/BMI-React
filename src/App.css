@@ -3,11 +3,11 @@ html, body{
 }
 
 h1 {
-  color: cyan;
+  color: #b3ffff;
   align-content: center;
   padding-left: 45%;
   font-size: 40px;
-  text-shadow: 4px 4px purple;
+  text-shadow: 4px 4px #C71585;
 }
 
 h3 {
@@ -15,11 +15,26 @@ h3 {
   text-shadow: 2px 3px #C71585;
   font-size: 25px;
   display: grid;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 2;
+  padding-left: 48%;
 }
 
-h4 {
-  color: orange;
-  font-size: 20px;
+.Collapsible {
+  color: #b3ffff;
+  text-shadow: 2px 3px #C71585;
+  font-size: 25px;
+  font-weight: bold;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 2;
+  padding-left: 46%;
+}
+.Collapsible:hover{
+  background-color: #E6E6FA;
 }
 
 body {
@@ -53,17 +68,29 @@ button.bmi-calc{
   grid-column-end: 3;
   grid-row-start: 2;
   grid-row-end: 2;
-  left: 47%;
+  left: 44%;
   
 
 }
 
 button.bmi-class{
   color: 	#00FFFF;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 2;
+  left: 45%;
 }
 
 button.reset{
   color: 	#00FFFF;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 2;
+  left: 43%;
+  bottom: 36px;
+
 }
 
 footer {

@@ -4,7 +4,7 @@ import './App.css';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-
+import Collapsible from 'react-collapsible';
 
 const styles = makeStyles(theme => ({
   root: {
@@ -118,14 +118,17 @@ render() {
     
     
     
-      <h3>BMI = {this.state.bmi}</h3>
-      <h4>BMI Class = {this.state.bmiClass}</h4>
-    
+      <h3>BMI  {this.state.bmi}</h3>
+          
+     <Collapsible trigger="Start here">
+            <p> {this.state.bmiClass} </p>
+            <p> something about health to help people</p>
+          </Collapsible>
     
     
     
     <footer>
-    <p> this was developed by the young HSSK Prodigy </p>
+    <p> footer and stuff </p>
     </footer>
     </div>
   );
